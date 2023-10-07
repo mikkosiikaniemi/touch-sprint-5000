@@ -1,10 +1,12 @@
 const finger1 = document.getElementById("finger-left");
 const body = document.body;
 const distanceDisplay = document.getElementById("distance");
+const time = document.getElementById("time");
 const timerDisplay = document.getElementById("timer");
 const instructions = document.getElementById("instructions");
 const remaining = document.getElementById("remaining");
 const version = document.getElementById("version");
+const highscores = document.getElementById("highscores");
 
 const originalPositionY1 = finger1.style.top;
 const originalPositionX1 = finger1.style.left;
@@ -13,10 +15,12 @@ const originalDistanceFromTop1 = finger1.offsetTop;
 let isDragging1 = false;
 let offsetX1, offsetY1;
 let initialPositionX1, initialPositionY1;
-let totalDistance = 5000;
+let totalDistance = 500;
+let highScoreArray = [];
 
 let startTime, endTime;
 let timerId;
+let gameComplete = false;
 
 // Add mouse and touch event listeners
 finger1.addEventListener("touchstart", startDrag1);
@@ -26,6 +30,28 @@ finger1.addEventListener("touchend", endDrag1);
 document.addEventListener('touchmove', function (event) {
 	if (event.scale !== 1) { event.preventDefault(); }
 }, { passive: false });
+
+populateHighscores();
+
+function populateHighscores() {
+	let highScoresJSON = localStorage.getItem('highscores');
+	console.log(highScoresJSON);
+	if (!highScoresJSON) {
+		highscores.textContent = 'No highscores yet.';
+	} else {
+		highScoreArray = JSON.parse(highScoresJSON);
+		highScoreArray.sort(function(a,b) {
+			return a[0] - b[0];
+		});
+		let highScoreHTML = '<table>';
+		for (let i = 0; i < 3; i++) {
+			highScoreHTML += '<tr><td>' + highScoreArray[i][0] + ' ms</td><td>' + formatEpochTime(highScoreArray[i][1]) + '</td></tr>';
+		}
+		highScoreHTML += '</table>';
+		highscores.innerHTML = highScoreHTML;
+
+	}
+}
 
 function startDrag1(e) {
 	isDragging1 = true;
@@ -38,6 +64,9 @@ function startDrag1(e) {
 
 	if (instructions) {
 		instructions.remove();
+		highscores.remove();
+		time.style.display = 'block';
+		remaining.style.display = 'block';
 	}
 
 	// Handle both mouse and touch events
@@ -114,15 +143,19 @@ function updateTimer() {
 	timerId = setInterval(() => {
 		const currentTime = performance.now();
 		const elapsedTime = (currentTime - startTime).toFixed();
-		if (totalDistance > 0) {
+		if (totalDistance > 0 ) {
 			timerDisplay.textContent = elapsedTime;
-		} else {
+		} else if ( gameComplete === false ) {
 			finger1.remove();
 			remaining.style.fontSize = '8em';
 			remaining.style.bottom = '30%';
 			timerDisplay.style.fontSize = '3em';
 			remaining.textContent = '🤩🏆';
 			clearInterval(timerId);
+			highScoreArray.push( [ elapsedTime, Date.now() ] );
+			localStorage.setItem('highscores', JSON.stringify(highScoreArray));
+			timerDisplay.textContent = elapsedTime;
+			gameComplete = true;
 		}
 	}, 10);
 
@@ -131,3 +164,14 @@ function updateTimer() {
 version.addEventListener("click", function (e) {
 	body.style.backgroundImage = 'url("grass.svg")';
 });
+
+function formatEpochTime(epoch) {
+	const date = new Date(epoch); // Convert seconds to milliseconds
+	const day = String(date.getDate()).padStart(2, "0"); // Add leading zero if needed
+	const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+	const year = String(date.getFullYear()).slice(-2); // Get the last two digits of the year
+	const hours = String(date.getHours()).padStart(2, "0");
+	const minutes = String(date.getMinutes()).padStart(2, "0");
+
+	return `${day}.${month}.${year} ${hours}:${minutes}`;
+}
