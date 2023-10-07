@@ -18,17 +18,17 @@ body:before {
 	bottom: 0;
 	left:0;
 	right: 0;
-	background-image: linear-gradient(to top, #000, transparent);
+	background-image: linear-gradient(to top, #000000DD, transparent);
 }
 
 h1 {
 	color: #ffd3ae;
 	font-family: sans-serif;
-	font-weight: bold;
+	font-weight: 900;
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: -.05em;
-	font-size: 3em;
+	font-size: 2.5em;
 	line-height: 1;
 	-webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
@@ -46,7 +46,6 @@ h1 {
 	font-family: sans-serif;
 	font-weight: bold;
 	text-align: center;
-	text-transform: uppercase;
 	letter-spacing: -.05em;
 	font-size: 2em;
 	line-height: 1;
@@ -55,6 +54,7 @@ h1 {
   user-select: none; /* Standard syntax */
 	-webkit-text-stroke: 2px #333;
 	top: 50%;
+	padding: 0 1em;
 }
 
 .finger {

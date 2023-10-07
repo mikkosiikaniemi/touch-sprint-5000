@@ -11,5 +11,11 @@
   <path fill="#ebebeb" d="M0 0h700v700H0z" filter="url(#a)"/>
 	<rect x="50" width="50" height="700" fill="#ffffff22"></rect>
 	<rect x="600" width="50" height="700" fill="#ffffff22"></rect>
-	<rect x="100" width="50" height="50" y="300" fill="#ffffff22"></rect>
+	<rect x="100" width="50" height="10" y="600" fill="#ffffff22"></rect>
+	<rect x="100" width="50" height="10" y="500" fill="#ffffff22"></rect>
+	<rect x="100" width="50" height="10" y="400" fill="#ffffff22"></rect>
+	<rect x="100" width="50" height="10" y="300" fill="#ffffff22"></rect>
+	<rect x="100" width="50" height="10" y="200" fill="#ffffff22"></rect>
+	<rect x="100" width="50" height="10" y="100" fill="#ffffff22"></rect>
+	<rect x="100" width="50" height="10" y="0" fill="#ffffff22"></rect>
 </svg>
