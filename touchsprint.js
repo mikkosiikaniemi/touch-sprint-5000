@@ -38,7 +38,8 @@ document.addEventListener('touchmove', function (event) {
 
 function startDrag1(e) {
 	isDragging1 = true;
-	endDrag2();
+	var endTouch2 = new Event('touchend');
+	finger2.dispatchEvent(endTouch2);
 
 	// Handle both mouse and touch events
 	if (e.type === "mousedown") {
@@ -61,7 +62,8 @@ function startDrag1(e) {
 
 function startDrag2(e) {
 	isDragging2 = true;
-	endDrag1();
+	var endTouch1 = new Event('touchend');
+	finger1.dispatchEvent(endTouch1);
 
 	// Handle both mouse and touch events
 	if (e.type === "mousedown") {

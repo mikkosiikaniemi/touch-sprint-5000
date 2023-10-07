@@ -55,3 +55,13 @@ h1 {
 	text-transform: uppercase;
 	font-size: 7em;
 }
+
+#version {
+	position: absolute;
+	left: 1%;
+	bottom: 0;
+	color: #FFF2;
+	font-family: sans-serif;
+	text-transform: uppercase;
+	font-size: 1em;
+}
