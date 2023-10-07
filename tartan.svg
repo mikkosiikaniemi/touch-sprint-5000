@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700">
+  <defs>
+    <filter id="a" width="140%" height="140%" x="-20%" y="-20%" color-interpolation-filters="linearRGB" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse">
+      <feTurbulence width="100%" height="100%" x="0%" y="0%" baseFrequency=".1" numOctaves="4" result="turbulence" seed="15" stitchTiles="stitch" type="fractalNoise"/>
+      <feSpecularLighting width="100%" height="100%" x="0%" y="0%" in="turbulence" lighting-color="#ebebeb" result="specularLighting" specularConstant=".7" specularExponent="20" surfaceScale="18">
+        <feDistantLight azimuth="3" elevation="158"/>
+      </feSpecularLighting>
+    </filter>
+  </defs>
+  <path fill="#8d1b00ff" d="M0 0h700v700H0z"/>
+  <path fill="#ebebeb" d="M0 0h700v700H0z" filter="url(#a)"/>
+	<rect x="50" width="50" height="700" fill="#ffffff22"></rect>
+	<rect x="600" width="50" height="700" fill="#ffffff22"></rect>
+	<rect x="100" width="50" height="50" y="300" fill="#ffffff22"></rect>
+</svg>
