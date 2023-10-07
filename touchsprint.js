@@ -21,6 +21,10 @@ document.addEventListener("touchmove", drag);
 document.addEventListener("mouseup", endDrag);
 document.addEventListener("touchend", endDrag);
 
+document.addEventListener('touchmove', function (event) {
+	if (event.scale !== 1) { event.preventDefault(); }
+}, { passive: false });
+
 function startDrag(e) {
 	isDragging = true;
 
