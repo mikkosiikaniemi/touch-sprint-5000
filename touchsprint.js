@@ -27,16 +27,17 @@ finger2.addEventListener("touchstart", startDrag2);
 document.addEventListener("mousemove", drag);
 document.addEventListener("touchmove", drag);
 
-document.addEventListener("mouseup", endDrag);
-document.addEventListener("touchend", endDrag);
+//document.addEventListener("mouseup", endDrag);
+finger1.addEventListener("touchend", endDrag1);
+finger2.addEventListener("touchend", endDrag2);
 
 document.addEventListener('touchmove', function (event) {
 	if (event.scale !== 1) { event.preventDefault(); }
 }, { passive: false });
 
 function startDrag1(e) {
-	console.log('Dragging 1.')
 	isDragging1 = true;
+	endDrag2();
 
 	// Handle both mouse and touch events
 	if (e.type === "mousedown") {
@@ -59,6 +60,7 @@ function startDrag1(e) {
 
 function startDrag2(e) {
 	isDragging2 = true;
+	endDrag1();
 
 	// Handle both mouse and touch events
 	if (e.type === "mousedown") {
@@ -143,33 +145,25 @@ function drag(e) {
 		body.style.backgroundPositionY = totalDistance + "px";
 
 		distanceDisplay.textContent = totalDistance.toFixed(0);
-
-		// Update the initial position for the next drag
-
-
 	}
 }
 
-function endDrag() {
-	if (isDragging1) {
+function endDrag1() {
+	// Reset the element's position to "absolute" and return it to its original place
+	finger1.style.position = "absolute";
+	finger1.style.zIndex = "0";
+	finger1.style.left = originalPositionX1;
+	finger1.style.top = originalPositionY1;
 
-		// Reset the element's position to "absolute" and return it to its original place
-		finger1.style.position = "absolute";
-		finger1.style.zIndex = "0";
-		finger1.style.left = originalPositionX1;
-		finger1.style.top = originalPositionY1;
+	isDragging1 = false;
+}
 
-		isDragging1 = false;
-	}
+function endDrag2() {
+	// Reset the element's position to "absolute" and return it to its original place
+	finger2.style.position = "absolute";
+	finger2.style.zIndex = "0";
+	finger2.style.left = originalPositionX2;
+	finger2.style.top = originalPositionY2;
 
-	if (isDragging2) {
-
-		// Reset the element's position to "absolute" and return it to its original place
-		finger2.style.position = "absolute";
-		finger2.style.zIndex = "0";
-		finger2.style.left = originalPositionX2;
-		finger2.style.top = originalPositionY2;
-
-		isDragging2 = false;
-	}
+	isDragging2 = false;
 }
