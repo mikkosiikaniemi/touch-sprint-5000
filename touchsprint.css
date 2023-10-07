@@ -4,6 +4,7 @@ html, body {
 
 body {
 	height: 100vh;
+	height: -webkit-fill-available;
 	overflow: hidden;
 	margin: 0;
 	background-image: url('tartan.svg');
