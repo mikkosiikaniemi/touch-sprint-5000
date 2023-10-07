@@ -24,15 +24,26 @@ h1 {
 	-webkit-text-stroke: min(.6vw, 8px ) #333;
 }
 
-.draggable-element {
-	background-image: url('finger.svg');
+.finger {
 	transform:scaleY(-1);
-	width: 30vw;
-	height: 30vw;
+	width: 50vw;
+	height: 40vw;
 	cursor: pointer;
 	position: absolute;
 	top: 100px;
-	left: calc( 50% - 15vw );
+	background-repeat: no-repeat;
+}
+
+.finger.left {
+	background-image: url('finger.svg');
+	left: 0;
+	background-position: 80% center;
+}
+
+.finger.right {
+	background-image: url('finger.svg');
+	left: 50%;
+	background-position: 20% center;
 }
 
 #distance {
