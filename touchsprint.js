@@ -4,6 +4,7 @@ const distanceDisplay = document.getElementById("distance");
 const timerDisplay = document.getElementById("timer");
 const instructions = document.getElementById("instructions");
 const remaining = document.getElementById("remaining");
+const version = document.getElementById("version");
 
 const originalPositionY1 = finger1.style.top;
 const originalPositionX1 = finger1.style.left;
@@ -110,17 +111,23 @@ function endDrag1() {
 
 function updateTimer() {
 
-
 	timerId = setInterval(() => {
 		const currentTime = performance.now();
 		const elapsedTime = (currentTime - startTime).toFixed();
 		if (totalDistance > 0) {
 			timerDisplay.textContent = elapsedTime;
 		} else {
-			remaining.textContent = '🏆';
+			finger1.remove();
+			remaining.style.fontSize = '8em';
+			remaining.style.bottom = '30%';
+			timerDisplay.style.fontSize = '3em';
+			remaining.textContent = '🤩🏆';
 			clearInterval(timerId);
 		}
 	}, 10);
 
-
 }
+
+version.addEventListener("click", function (e) {
+	body.style.backgroundImage = 'url("grass.svg")';
+});
