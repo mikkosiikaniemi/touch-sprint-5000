@@ -32,7 +32,6 @@ function startDrag1(e) {
 	// Start the timer
 	if (!startTime) {
 		startTime = performance.now();
-		console.log(startTime);
 	}
 	updateTimer();
 
@@ -95,7 +94,6 @@ function drag1(e) {
 
 	// Update the background position to move it together with the element
 	body.style.backgroundPositionY = -totalDistance + "px";
-	console.log(totalDistance);
 
 	distanceDisplay.textContent = totalDistance.toFixed(0);
 }
@@ -118,7 +116,7 @@ function updateTimer() {
 		const elapsedTime = (currentTime - startTime).toFixed();
 		if (totalDistance > 0) {
 			timerDisplay.textContent = elapsedTime;
-		}else {
+		} else {
 			remaining.textContent = '🏆';
 			clearInterval(timerId);
 		}
