@@ -71,7 +71,7 @@ h1 {
 	background-size: min( 50vh, 200px );
 	font-size: 10em;
 	text-align: center;
-	line-height: 70vh;
+	line-height: 68vh;
 }
 
 .finger.left {
@@ -123,7 +123,7 @@ h1 {
 	bottom: 15%;
 	color: #ffd3ae;
 	text-align: center;
-	font-size: 2em;
+	font-size: 1.5em;
 	line-height: 1.5;
   user-select: none; /* Standard syntax */
 	margin: 0;

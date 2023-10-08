@@ -35,7 +35,6 @@ populateHighscores();
 
 function populateHighscores() {
 	let highScoresJSON = localStorage.getItem('highscores');
-	console.log(highScoresJSON);
 	if (!highScoresJSON) {
 		highscores.textContent = 'No highscores yet.';
 	} else {
@@ -45,7 +44,7 @@ function populateHighscores() {
 		});
 		let highScoreHTML = '<table>';
 		for (let i = 0; i < 3; i++) {
-			highScoreHTML += '<tr><td>' + highScoreArray[i][0] + ' ms</td><td>' + formatEpochTime(highScoreArray[i][1]) + '</td></tr>';
+			highScoreHTML += '<tr><td>⏱️' + highScoreArray[i][0] + ' ms</td><td>📅 ' + formatEpochTime(highScoreArray[i][1]) + '</td></tr>';
 		}
 		highScoreHTML += '</table>';
 		highscores.innerHTML = highScoreHTML;
