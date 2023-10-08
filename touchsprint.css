@@ -54,6 +54,9 @@ h1 {
 	top: 20%;
 	width: 80%;
 	border-radius: 1em;
+	background-color: #ffd3ae;
+	color: #333;
+	border: 0;
 }
 
 #instructions {
