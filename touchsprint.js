@@ -7,6 +7,7 @@ const instructions = document.getElementById("instructions");
 const remaining = document.getElementById("remaining");
 const version = document.getElementById("version");
 const highscores = document.getElementById("highscores");
+const again = document.getElementById("again");
 
 const originalPositionY1 = finger1.style.top;
 const originalPositionX1 = finger1.style.left;
@@ -42,11 +43,15 @@ function populateHighscores() {
 		highScoreArray.sort(function(a,b) {
 			return a[0] - b[0];
 		});
-		let highScoreHTML = '<table>';
-		for (let i = 0; i < 3; i++) {
-			highScoreHTML += '<tr><td>⏱️' + highScoreArray[i][0] + ' ms</td><td>📅 ' + formatEpochTime(highScoreArray[i][1]) + '</td></tr>';
+		let highScoreHTML = '<table><tr><th colspan="3">Local highscores</th></tr><tr>';
+		for (let i = 0; i < highScoreArray.length; i++) {
+			// Date: formatEpochTime(highScoreArray[i][1])
+			highScoreHTML += '<td>⏱️' + highScoreArray[i][0] + ' ms</td>';
+			if (i >= 2) {
+				break;
+			}
 		}
-		highScoreHTML += '</table>';
+		highScoreHTML += '</tr></table>';
 		highscores.innerHTML = highScoreHTML;
 
 	}
@@ -155,6 +160,7 @@ function updateTimer() {
 			localStorage.setItem('highscores', JSON.stringify(highScoreArray));
 			timerDisplay.textContent = elapsedTime;
 			gameComplete = true;
+			again.style.display = 'block';
 		}
 	}, 10);
 
@@ -174,3 +180,7 @@ function formatEpochTime(epoch) {
 
 	return `${day}.${month}.${year} ${hours}:${minutes}`;
 }
+
+again.addEventListener("click", function (e) {
+	location.reload();
+});
