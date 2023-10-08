@@ -15,7 +15,7 @@ const originalDistanceFromTop1 = finger1.offsetTop;
 let isDragging1 = false;
 let offsetX1, offsetY1;
 let initialPositionX1, initialPositionY1;
-let totalDistance = 500;
+let totalDistance = 5000;
 let highScoreArray = [];
 
 let startTime, endTime;
